@@ -28,7 +28,7 @@ def HC_SR04_Distance(trig, echo):
 			while  GPIO.input(echo) == GPIO.HIGH: 
 				"""Do nothin'""";
 			final_t = datetime.datetime.now()
-			print("\ni: ", initial_t, "\nF: ", final_t)
+			print("\nI: ", initial_t, "\nF: ", final_t)
 			return 34300 * get_delta_t(initial_t, final_t) / 2.0
  
 # pin_list = [6, 13, 19, 26] 

@@ -12,7 +12,7 @@ St  =  [[0, 1,  0,  0 ],
 	[0, 0, 1, 0 ],
 	[0, 0, 0, 1 ]]
 trig   = 27
-echo   = 6
+echo   = 22
 
 
 if __name__ == "__main__":
@@ -27,4 +27,4 @@ if __name__ == "__main__":
 			set_state(pin[1:], St[0][1:])
 		else:
 			set_state(pin[1:], St[1][1:])
-		time.sleep(3)
+		time.sleep(0.5)
