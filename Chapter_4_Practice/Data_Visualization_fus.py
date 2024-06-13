@@ -5,7 +5,6 @@ import random
 data = []
 another_data = []
 fig = plt.figure()
-ax = plt.axes(x=(0,30), )
 
 for i in range(100):
     data.append(int(random.random()*100)%100)
