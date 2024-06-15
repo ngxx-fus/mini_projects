@@ -11,11 +11,13 @@ from img_extraction import *
 
 def main():
 	imgs_path = "./imgs"
-	imgs_list = ["frame0.jpg", "frame1.jpg", "frame2.jpg", "frame3.jpg"]
+	imgs_list = ["frame0.jpg", "frame1.jpg", "frame2.jpg", "frame3.jpg",
+			 "frame4.jpg", "frame5.jpg", "frame6.jpg", "frame7.jpg"]
 
 	extracted_frames = extract_set_img(imgs_path, imgs_list)
 
-	print(extracted_frames)
+#	print(len(extracted_frames))
+#	print(len(extracted_frames[0]))
 
 	my_oled = SSD1306_128_32()
 	my_oled.begin()
@@ -23,9 +25,11 @@ def main():
 	for it in range(repeat):
 		my_oled.clear()
 		for frame in extracted_frames:
-			my_oled._buferr = frame
+#			print(frame)
+			my_oled._buffer = frame
 			my_oled.display()
-			time.sleep(1)
+			time.sleep(0.2)
+		time.sleep(1)
 
 if __name__ == "__main__":
 	main()

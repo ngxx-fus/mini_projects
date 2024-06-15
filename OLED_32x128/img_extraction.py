@@ -2,26 +2,26 @@ import numpy as np
 import cv2
 
 def extract_img(img):
-    # print(img.shape)
-    h, w, c = img.shape
+	print("Processing img ", img.shape)
+	h, w, c = img.shape
 
-    pkt_list = []
-    pkt_ac = 0
+	pkt_list = []
+	pkt_ac = 0
 
-    for page in range(4):
-        for col in range(w):
-            for row in range(page*8, page*8+7):
-                # print(f"row: {row} col: {col}")
-                gray = img[row, col, 2]/3 + img[row, col, 1]/3 + img[row, col, 0]/3
-                gray = int(gray)
-                if( gray > 50):
-                    pkt_ac = pkt_ac + (2**(row%8))
+	for page in range(4):
+		for col in range(w):
+			pkt_ac = 0
+			for row in range(page*8, page*8+7):
+				# print(f"row: {row} col: {col}")
+				gray = img[row, col, 2]/3 + img[row, col, 1]/3 + img[row, col, 0]/3
+				gray = int(gray)
+				if( gray > 50):
+					pkt_ac = pkt_ac + (2**(row%8))
+			pkt_list.append(pkt_ac)
+			pkt_ac  = 0
 
-            pkt_list.append(int(pkt_ac))
-            pkt_ac  = 0
 
-
-#    print(len(pkt_list))
+	print("Packet len: ", len(pkt_list), '\n')
 #    k = 0
 #    for i in range(16):
 #        for j in range(32):
@@ -30,7 +30,7 @@ def extract_img(img):
 #        print('\n', end='')
 #        if (i+1)%4 == 0:
 #            print('\n', end='')
-    return pkt_list
+	return pkt_list
 
 def extract_set_img(imgs_path, imgs_list):
     set_of_plt_list = []
