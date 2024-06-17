@@ -1,9 +1,10 @@
 import numpy as np
+from PIL import Image
 import cv2
 
 def extract_img(img):
-	print("Processing img ", img.shape)
-	h, w, c = img.shape
+	w, h = img.size
+	print("Processing img ", (h, w))
 
 	pkt_list = []
 	pkt_ac = 0
@@ -12,8 +13,9 @@ def extract_img(img):
 		for col in range(w):
 			pkt_ac = 0
 			for row in range(page*8, page*8+8):
-				# print(f"row: {row} col: {col}")
-				gray = img[row, col, 2]/3 + img[row, col, 1]/3 + img[row, col, 0]/3
+				"""pixel"""
+				r, g, b = img.getpixel((col, row))
+				gray = (int(r)+int(g)+int(b))/3
 				gray = int(gray)
 				if( gray > 50):
 					pkt_ac = pkt_ac + (2**(row%8))
@@ -40,6 +42,6 @@ def extract_set_img(imgs_path, imgs_list):
     return set_of_plt_list
 
 if __name__ == "__main__":
-    img_path = r"frame1.jpg"
-    img = cv2.imread(img_path)
+    img_path = r"./DB/based_imgs/based_canvas_ruler.jpg"
+    img = Image.open(img_path)
     print(extract_img(img))

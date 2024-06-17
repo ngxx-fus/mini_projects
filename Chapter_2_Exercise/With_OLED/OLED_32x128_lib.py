@@ -11,43 +11,56 @@ from IMG2OLED import extract_img
 import numpy as np
 from PIL import Image, ImageFont, ImageDraw
 
-class OLED_32x128:
-    def __init__(self, db_path = '.', based_canvas = 'white'):
-        self.based_canvas = 'black' # white / ruler / disk / RAM ...
-        self.db_path = '.'
-        self.oled = SSD1306_128_32()
-        self.canvas = Image.open(DB_path+'/based_imgs/based_canvas_white.jpg')
-        if based_canvas == 'black':
-            canvas = Image.open(DB_path+'/based_imgs/based_canvas_black.jpg')
-        elif based_canvas == 'ruler':
-            canvas = Image.open(DB_path+'/based_imgs/based_canvas_ruler.jpg')
-        elif based_canvas == 'disk':
-            canvas = Image.open(DB_path+'/based_imgs/based_canvas_disk.jpg')
-        elif based_canvas == 'ram':
-            canvas = Image.open(DB_path+'/based_imgs/based_canvas_ram.jpg')
-        elif based_canvas == 'cpu':
-            canvas = Image.open(DB_path+'/based_imgs/based_canvas_cpu.jpg')
-        oled._buffer = extract_img(canvas)
+class OLED_32x128():
+    def __init__(self, db_path = './DB', based_canvas = 'white'):
+        self.the_oled = SSD1306_128_32()
+        self.based_canvas = based_canvas # white / ruler / disk / RAM ...
+        self.db_path = db_path
+        self.temporary_canvas = Image.fromarray(np.zeros((32, 128)))
+        self.canvas = Image.fromarray(np.zeros((32, 128)))
 
-    def begin():
-        oled.begin()
+    def start(self):
+        self.load_canvas()
+        self.the_oled.begin()
+        self.the_oled._buffer = extract_img(self.canvas)
+        # print(extract_img(self.canvas))
+        self.the_oled.display()
 
-    def clear():
-        oled.clear()
+    def clear(self):
+        self.the_oled.clear()
 
-    def load_canvas():
-        oled._buffer = extract_img(canvas)
+    def load_canvas(self):
+        if self.based_canvas == 'white':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_white.jpg')
+        elif self.based_canvas == 'black':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_black.jpg')
+        elif self.based_canvas == 'ruler':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_ruler.jpg')
+        elif self.based_canvas == 'disk':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_disk.jpg')
+        elif self.based_canvas == 'ram':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_ram.jpg')
+        elif self.based_canvas == 'cpu':
+            self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_cpu.jpg')
 
-    def display():
-        oled.display()
+    def display(self):
+        self.the_oled.display()
     
-    def add_text(text="Hello!", pos=(0, 0), size=12, color=(255,255,255)):
-        DrawnImg = ImageDraw( Image.fromarray(oled._buffer))
-        FontImg = ImageFont.truetype(db_path+'/fonts/', size)
-        ImgDrawn.text(pos, text, color, FontImg)
-        oled.__buffer = extract_img(Image.alpha_composite(DrawnImg, Image.fromarray(oled._buffer)))
+    def add_text(self, text="Hé hé!", pos=(0, 0), size=12, color=(255,255,255), clear_prev = True):
+        Img = self.canvas.copy()
+        DrawnImg = ImageDraw.Draw(Img)
+        FontImg = ImageFont.truetype(self.db_path+'/fonts/SVN-Arial-2-bold.ttf', size)
+        DrawnImg.text(pos, text, color, FontImg)
+        self.the_oled._buffer = extract_img(Img)
+        self.the_oled.display()
 
 if __name__ == "__main__":
     oled = OLED_32x128(based_canvas='ruler')
-    oled.begin()
-    oled.display()
+    oled.start()
+    oled.add_text(pos=(69, 9))
+    oled.add_text(pos=(71, 9))
+    oled.add_text(pos=(73, 9))
+    oled.add_text(pos=(77, 9))
+    oled.add_text(pos=(82, 9))
+    oled.add_text(pos=(88, 9))
+    oled.add_text(pos=(64, 9))
