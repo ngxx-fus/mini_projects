@@ -3,6 +3,7 @@
 # ref: https://raspberry-projects.com/pi/programming-in-python/i2c-programming-in-python/using-the-i2c-interface-2
 # ref: https://www.raspberrypi-spy.co.uk/2018/04/i2c-oled-display-module-with-raspberry-pi/
 # ref: https://github.com/crismc/rpi_i2c_oled/
+# ref: https://pillow.readthedocs.io/en/stable/reference/Image.html
 
 import time
 from SSD1306 import SSD1306_128_32
