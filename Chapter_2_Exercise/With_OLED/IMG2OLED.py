@@ -2,7 +2,10 @@ import numpy as np
 from PIL import Image
 import cv2
 
-def extract_img(img):
+def binary_scale(img):
+	return img.convert('1')
+
+def extract_img(img, thres=100):
 	w, h = img.size
 	# print("Processing img ", (h, w))
 
@@ -17,7 +20,7 @@ def extract_img(img):
 				r, g, b = img.getpixel((col, row))
 				gray = (int(r)+int(g)+int(b))/3
 				gray = int(gray)
-				if( gray > 100):
+				if( gray >= thres):
 					pkt_ac = pkt_ac + (2**(row%8))
 			pkt_list.append(pkt_ac)
 			pkt_ac  = 0

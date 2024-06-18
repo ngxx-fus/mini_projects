@@ -66,8 +66,8 @@ def main():
         else:
             oled.based_canvas = 'ruler'
             oled.load_canvas()
-            oled.add_text(text=str(d), pos=(64,8))
-        #time.sleep(0.2)
+            oled.add_text(text=str(d), pos=(64,7))
+        # time.sleep(1)
         
 
 if __name__ == "__main__":
