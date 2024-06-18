@@ -4,7 +4,7 @@ import cv2
 
 def extract_img(img):
 	w, h = img.size
-	print("Processing img ", (h, w))
+	# print("Processing img ", (h, w))
 
 	pkt_list = []
 	pkt_ac = 0
@@ -17,13 +17,13 @@ def extract_img(img):
 				r, g, b = img.getpixel((col, row))
 				gray = (int(r)+int(g)+int(b))/3
 				gray = int(gray)
-				if( gray > 50):
+				if( gray > 100):
 					pkt_ac = pkt_ac + (2**(row%8))
 			pkt_list.append(pkt_ac)
 			pkt_ac  = 0
 
 
-	print("Packet len: ", len(pkt_list), '\n')
+	# print("Packet len: ", len(pkt_list), '\n')
 #    k = 0
 #    for i in range(16):
 #        for j in range(32):

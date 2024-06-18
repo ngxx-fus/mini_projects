@@ -29,6 +29,11 @@ class OLED_32x128():
     def clear(self):
         self.the_oled.clear()
 
+    def set_based_canvas(self, based_canvas='white', reload_canvas = False):
+        self.based_canvas = based_canvas
+        if reload_canvas == True:
+            self.load_canvas()
+
     def load_canvas(self):
         if self.based_canvas == 'white':
             self.canvas = Image.open(self.db_path+'/based_imgs/based_canvas_white.jpg')
@@ -46,13 +51,15 @@ class OLED_32x128():
     def display(self):
         self.the_oled.display()
     
-    def add_text(self, text="Hé hé!", pos=(0, 0), size=12, color=(255,255,255), clear_prev = True):
+    def add_text(self, text="HelloW!", pos=(0, 0), size=12, color=(255,255,255), font_path='None'):
         Img = self.canvas.copy()
         DrawnImg = ImageDraw.Draw(Img)
         FontImg = ImageFont.truetype(self.db_path+'/fonts/SVN-Arial-2-bold.ttf', size)
+        
         DrawnImg.text(pos, text, color, FontImg)
         self.the_oled._buffer = extract_img(Img)
         self.the_oled.display()
+
 
 if __name__ == "__main__":
     oled = OLED_32x128(based_canvas='ruler')
