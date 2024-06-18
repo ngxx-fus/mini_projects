@@ -13,8 +13,12 @@ The lib consists of three files (*.py) and one folder:
 The demo of the lib:
 
     - DistanceSensor.py: Using Ultrasonic Senor to measure the distance from the sensor to things.
-## Usage
+## Circuit diagram
+<br>
+<img src="https://github.com/ngxx-fus/mini_projects/assets/75427876/54bb5066-a666-4abc-af17-44934a3cc406" width="401">
+<br>
 
+## Usage
 <1> Clone three files (*.py) and one folder into the workspace folder, remember that the workspace folder also includes the current *.py file (the file that is being edited/coded/programmed). 
 <br><2> import OLED_32x128 
 
@@ -25,6 +29,7 @@ The demo of the lib:
 ## Desciption
 | function    | decription |
 | -------- | ------- |
+
 | OLED_32x128(db_path = './DB', based_canvas = 'white')  |  ***db_path*** is the path to DB folder <br>***based_canvas*** is the type of canvas, some valid canvas is 'white', 'black', 'cpu', 'ram', 'ruler'   |
 | clear()           | Eased what is shown in the OLED screen, _buffer, but canvas and prev_canvas won't be eased        |
 | set_based_canvas(based_canvas='white', reload_canvas = False)          |  based_canvas: is described above <br> reload_canvas: load the canvas, but prev_canvas isn't changed       |
