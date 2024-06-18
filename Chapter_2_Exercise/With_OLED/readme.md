@@ -29,7 +29,6 @@ The demo of the lib:
 ## Desciption
 | function    | decription |
 | -------- | ------- |
-
 | OLED_32x128(db_path = './DB', based_canvas = 'white')  |  ***db_path*** is the path to DB folder <br>***based_canvas*** is the type of canvas, some valid canvas is 'white', 'black', 'cpu', 'ram', 'ruler'   |
 | clear()           | Eased what is shown in the OLED screen, _buffer, but canvas and prev_canvas won't be eased        |
 | set_based_canvas(based_canvas='white', reload_canvas = False)          |  based_canvas: is described above <br> reload_canvas: load the canvas, but prev_canvas isn't changed       |
