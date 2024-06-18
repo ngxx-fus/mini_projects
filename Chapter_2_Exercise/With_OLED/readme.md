@@ -1,1 +1,3 @@
-# OLED hxw=32x128 
+## OLED hxw=32x128 Libs
+### Acknowledgement
+    The lib is based on repository **rpi_i2c_oled** of **crismc**. I have re-use file **SSD1306.py** the repository and added some functions to convert a JPG photo to type that can be displayed in OLED wxh=123x32.  processing text and image. In addition, some image processing functions have been added to convert RGB image to Binary image, overlay image, text.
