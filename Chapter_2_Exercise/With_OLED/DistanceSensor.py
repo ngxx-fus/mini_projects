@@ -1,6 +1,4 @@
 import time
-
-import time
 import datetime
 import RPi.GPIO as GPIO
 from IMG2OLED import extract_img

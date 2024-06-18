@@ -5,21 +5,24 @@ from my_func import *
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-pin = [6, 26, 19, 13]
-IO  = [1, 0,  0,  0 ]
-St  = [[0, 1,  0,  0 ],
-	[0, 0, 1, 0 ],
-	[0, 0, 0, 1 ]]
+LEDpin = [26, 19, 13]
+BUTTONpin = [6]
+State  = [[1,  0,  0 ],
+	[0, 1, 0 ],
+	[0, 0, 1 ]]
 
 
 
 if __name__ == "__main__":
+	GPIO.setup(LEDpin, GPIO.OUT)
+	GPIO.setup(BUTTONpin, GPIO.IN)
+	GPIO.output(LEDpin, State[0])
+
 	mode = 0
 	print("Current mode: {}".format(mode))
-	pin_setup(pin, IO, St[mode])
 	while True :
-		if GPIO.input(pin[0]) == GPIO.HIGH:
+		if GPIO.input(BUTTONpin[0]) == GPIO.HIGH:
 			mode = (mode+1)%3
 			print("Current mode: {}".format(mode))
-			set_state(pin[1:], St[mode][1:])
+			GPIO.output(LEDpin, State[mode])
 			time.sleep(0.200)
