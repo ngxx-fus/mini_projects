@@ -1,6 +1,5 @@
 import RPi.GPIO as GPIO
 import time
-from my_func import *
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
